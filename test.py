@@ -70,7 +70,8 @@ def getInfo(path):
     transform = transforms.Compose([
         transforms.ToTensor()
     ])(image).to(device)
-    image = torch.permute(transform, (2, 0, 1)).unsqueeze(dim=0)
+#     image = torch.permute(transform, (2, 0, 1)).unsqueeze(dim=0)
+    image = torch.permute(transform, (0, 1, 2)).unsqueeze(dim=0)
     out = model(image)
     out = torch.argmax(out, dim=1)
     j = torch.zeros((1, 176, 280))
